@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -59,5 +60,9 @@ public class UserService implements UserDetailsService {
         userRepository.save(user);
         User createdUser = userRepository.findByUsername(user.getUsername());
         registrationService.saveAndSetRoleUser(createdUser.getId());
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
